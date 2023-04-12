@@ -1,0 +1,135 @@
+/* Variables
+   ========================================================================== */
+
+:root {
+    --black: #1c2e2e;
+    --green: #0e6f79;
+    --white: #eee8e0;
+}
+
+/* Variables
+   ========================================================================== */
+
+.hide {
+    display: none !important;
+}
+
+.hide-visually:not(:focus):not(:active) {
+    clip: rect(0 0 0 0) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    position: absolute;
+    white-space: nowrap;
+}
+
+/* Type
+   ========================================================================== */
+
+@font-face {
+    font-family: 'Font';
+    src: url(fonts/font.woff2) format(woff2);
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: unset;
+    color: unset;
+    line-height: 1.4;
+}
+
+h1 {
+}
+
+h2 {
+}
+
+h3 {
+}
+
+h4 {
+}
+
+p {
+}
+
+a {
+}
+
+/* Section
+========================================================================== */
+
+/**
+ * Subsection
+ */
+
+/* DESKTOP
+   ****************************************************************************/
+
+@media screen and (min-width: 1440px) {
+    /* Section
+   ========================================================================== */
+
+    /**
+     * Subsection
+     */
+}
+
+/* TABLET
+   ****************************************************************************/
+
+@media screen and (max-width: 991px) {
+    /* Utility
+   ========================================================================== */
+
+    .hide-tablet {
+        display: none !important;
+    }
+
+    /* Section
+   ========================================================================== */
+
+    /**
+     * Subsection
+     */
+}
+
+/* MOBILE LANDSCAPE
+   ****************************************************************************/
+
+@media screen and (max-width: 767px) {
+    /* Utility
+   ========================================================================== */
+
+    .hide-mobile-landscape {
+        display: none !important;
+    }
+
+    /* Section
+   ========================================================================== */
+
+    /**
+     * Subsection
+     */
+}
+
+/* MOBILE PORTRAIT
+   ****************************************************************************/
+
+@media screen and (max-width: 479px) {
+    /* Utility
+   ========================================================================== */
+
+    .hide-mobile {
+        display: none !important;
+    }
+
+    /* Section
+   ========================================================================== */
+
+    /**
+     * Subsection
+     */
+}
