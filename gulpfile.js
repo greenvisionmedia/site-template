@@ -1,22 +1,32 @@
 import gulp from 'gulp';
 import terser from 'gulp-terser';
 import cssnano from 'gulp-cssnano';
-import hash from 'gulp-hash-filename';
+import rename from 'gulp-rename';
+import replace from 'gulp-replace';
 
-function markup() {
-    return gulp.src('src/**/*.html').pipe(gulp.dest('public/'));
+const hash = '-' + (Math.random() + 1).toString(36).substring(7);
+
+function scripts() {
+    return gulp.src('src/js/*.js').pipe(terser()).pipe(gulp.dest('public/js/'));
 }
 
 function styles() {
     return gulp
         .src('src/css/*.css')
         .pipe(cssnano())
-        .pipe(hash())
+        .pipe(
+            rename((path) => {
+                path.basename += hash;
+            })
+        )
         .pipe(gulp.dest('public/css/'));
 }
 
-function scripts() {
-    return gulp.src('src/js/*.js').pipe(terser()).pipe(gulp.dest('public/js/'));
+function markup() {
+    return gulp
+        .src('src/**/*.html')
+        .pipe(replace('{{hash}}', hash))
+        .pipe(gulp.dest('public/'));
 }
 
 function images() {
@@ -27,8 +37,4 @@ function fonts() {
     return gulp.src('src/fonts/*').pipe(gulp.dest('public/fonts/'));
 }
 
-function txt() {
-    return gulp.src('src/*.txt').pipe(gulp.dest('public/'));
-}
-
-gulp.task('default', gulp.parallel(markup, styles, scripts, images, fonts, txt));
+gulp.task('default', gulp.parallel(markup, styles, scripts, images, fonts));
