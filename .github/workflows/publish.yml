@@ -1,0 +1,35 @@
+name: Publish
+on:
+    push:
+        branches:
+            - publish
+    workflow_dispatch:
+jobs:
+    publish:
+        name: 🎉 Publish
+        runs-on: ubuntu-latest
+        steps:
+            # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+            - name: 🚚 Get latest code
+              uses: actions/checkout@v3
+
+            # Sets up node
+            - name: 🏗️ Build with gulp
+              uses: actions/setup-node@v1
+              with:
+                  node-version: 12
+
+            # Runs gulp to build
+            - run: npm ci
+            - run: gulp
+
+            # Deploy to your custom domain
+            - name: 📩 Deploy to custom domain
+              uses: SamKirkland/FTP-Deploy-Action@4.3.1
+              with:
+                  server: greenvisionmedia.net
+                  username: gvm@greenvisionmedia.net
+                  password: ${{secrets.FTP_PASSWORD}}
+                  server-dir: greenvisionmedia.net/public_html/
+                  protocol: ftps
+                  dangerous-clean-slate: false
